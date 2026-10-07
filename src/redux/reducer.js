@@ -37,6 +37,12 @@ const filtersReducer = createReducer(initialFilters, builder => {
   }));
 });
 
+const filtersReducer1 = createReducer(initialFilters, {
+  [changeFilter]: (state, action) => {
+    state.status = action.payload;
+  },
+});
+
 export const rootReducer = combineReducers({
   tasks: tasksReducer,
   filters: filtersReducer,
