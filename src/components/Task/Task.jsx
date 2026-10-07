@@ -1,8 +1,9 @@
 import { useDispatch } from 'react-redux';
-import { deleteTask, toggleTask } from '../../redux/actions';
+import { deleteTask, toggleTask } from '../../redux/tasksSlice';
 
 export const Task = ({ task }) => {
   const dispatch = useDispatch();
+
   const handleClick = () => dispatch(deleteTask(task.id));
 
   const handleChange = () => dispatch(toggleTask(task.id));

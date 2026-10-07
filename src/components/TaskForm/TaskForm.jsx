@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { addTask } from '../../redux/actions';
+import { addTask } from '../../redux/tasksSlice';
 
 export const TaskForm = () => {
   const dispatch = useDispatch();

@@ -1,39 +1,55 @@
 import { nanoid } from 'nanoid';
 
-export const addTask = text => {
-  return {
-    type: 'tasks/addTask',
-    payload: {
-      id: nanoid(),
-      text,
-      completed: false,
-    },
-  };
-};
+import { createAction } from '@reduxjs/toolkit';
 
-export const deleteTask = id => {
-  return {
-    type: 'tasks/deleteTask',
-    payload: {
-      id,
-    },
-  };
-};
+export const addTask = createAction('tasks/addTask', text => ({
+  payload: {
+    id: nanoid(),
+    text,
+    completed: false,
+  },
+}));
 
-export const toggleTask = id => {
-  return {
-    type: 'tasks/toggleTask',
-    payload: {
-      id,
-    },
-  };
-};
+export const deleteTask = createAction('tasks/deleteTask');
 
-export const changeFilter = value => {
-  return {
-    type: 'filters/changeFilter',
-    payload: {
-      value,
-    },
-  };
-};
+export const toggleTask = createAction('tasks/toggleTask');
+
+export const changeFilter = createAction('filters/changeFilter');
+
+// export const addTask = text => {
+//   return {
+//     type: 'tasks/addTask',
+//     payload: {
+//       id: nanoid(),
+//       text,
+//       completed: false,
+//     },
+//   };
+// };
+
+// export const deleteTask = id => {
+//   return {
+//     type: 'tasks/deleteTask',
+//     payload: {
+//       id,
+//     },
+//   };
+// };
+
+// export const toggleTask = id => {
+//   return {
+//     type: 'tasks/toggleTask',
+//     payload: {
+//       id,
+//     },
+//   };
+// };
+
+// export const changeFilter = value => {
+//   return {
+//     type: 'filters/changeFilter',
+//     payload: {
+//       value,
+//     },
+//   };
+// };

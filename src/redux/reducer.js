@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
 import { statusFilters } from './constants';
+import { createReducer } from '@reduxjs/toolkit';
+import { addTask, deleteTask, toggleTask, changeFilter } from './actions';
 
 const initialTasks = [
   { id: 0, text: 'Learn HTML and CSS', completed: true },
@@ -9,9 +11,67 @@ const initialTasks = [
   { id: 4, text: 'Build amazing apps', completed: false },
 ];
 
+const tasksReducer = createReducer(initialTasks, builder => {
+  builder
+    .addCase(addTask, (state, action) => void state.push(action.payload))
+    .addCase(deleteTask, (state, action) =>
+      state.filter(task => task.id !== action.payload)
+    )
+    .addCase(toggleTask, (state, action) =>
+      state.map(task =>
+        task.id === action.payload
+          ? { ...task, completed: !task.completed }
+          : task
+      )
+    );
+});
+
 const initialFilters = {
   status: statusFilters.all,
 };
+
+const filtersReducer = createReducer(initialFilters, builder => {
+  builder.addCase(changeFilter, (state, action) => ({
+    ...state,
+    status: action.payload,
+  }));
+});
+
+export const rootReducer = combineReducers({
+  tasks: tasksReducer,
+  filters: filtersReducer,
+});
+
+// const filtersReducer = (state = initialFilters, action) => {
+//   switch (action.type) {
+//     case 'filters/changeFilter':
+//       return {
+//         ...state,
+//         status: action.payload,
+//       };
+//     default:
+//       return state;
+//   }
+// };
+
+// const tasksReducer = (state = initialTasks, action) => {
+//   switch (action.type) {
+//     case 'tasks/addTask':
+//       return [...state, action.payload];
+
+//     case 'tasks/deleteTask':
+//       return state.filter(task => task.id !== action.payload);
+
+//     case 'tasks/toggleTask':
+//       return state.map(task =>
+//         task.id === action.payload
+//           ? { ...task, completed: !task.completed }
+//           : task
+//       );
+//     default:
+//       return state;
+//   }
+// };
 
 // const initialState = {
 //   tasks: [
@@ -25,47 +85,6 @@ const initialFilters = {
 //     status: statusFilters.all,
 //   },
 // };
-
-const filtersReducer = (state = initialFilters, action) => {
-  switch (action.type) {
-    case 'filters/changeFilter':
-      return {
-        ...state,
-        status: action.payload.value,
-      };
-    default:
-      return state;
-  }
-};
-
-const tasksReducer = (state = initialTasks, action) => {
-  switch (action.type) {
-    case 'tasks/addTask':
-      return [...state, action.payload];
-
-    case 'tasks/deleteTask':
-      return state.filter(task => task.id !== action.payload.id);
-
-    case 'tasks/toggleTask':
-      return state.map(task =>
-        task.id === action.payload.id
-          ? { ...task, completed: !task.completed }
-          : task
-      );
-    default:
-      return state;
-  }
-};
-
-// export const rootReducer = combineReducers({
-//   tasks: tasksReducer,
-//   filters: filtersReducer,
-// });
-
-export const rootReducer = combineReducers({
-  tasks: tasksReducer,
-  filters: filtersReducer,
-});
 
 // export const rootReducer = (state = initialState, action) => {
 //   switch (action.type) {
