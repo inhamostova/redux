@@ -18,6 +18,7 @@ export const TaskList = () => {
   const tasks = useSelector(getTasks);
   const filter = useSelector(getFilter);
   const visibleTasks = getVisibleContacts(tasks, filter);
+
   return (
     <ul>
       {visibleTasks.map(task => (
