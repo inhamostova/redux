@@ -12,7 +12,6 @@ export const selectFilter = state => state.filters.status;
 export const selectVisisbleTasks = createSelector(
   [selectTasks, selectFilter],
   (tasks, filter) => {
-    console.log('Calculating task count');
     switch (filter) {
       case statusFilters.active:
         return tasks.filter(task => !task.completed);
