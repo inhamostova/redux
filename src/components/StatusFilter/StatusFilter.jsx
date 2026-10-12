@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { statusFilters } from '../../redux/constants';
 import { Button } from 'components/Button/Button';
-import { getFilter } from '../../redux/selectors';
+import { selectFilter } from '../../redux/selectors';
 import { changeFilter } from '../../redux/filtersSlice';
 
 export const StatusFilter = () => {
-  const filter = useSelector(getFilter);
+  const filter = useSelector(selectFilter);
 
   const dispatch = useDispatch();
 

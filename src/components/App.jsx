@@ -5,23 +5,24 @@ import { TaskForm } from './TaskForm/TaskForm';
 import { TaskList } from './TaskList/TaskList';
 import { useEffect } from 'react';
 import { fetchTasks } from '../redux/operations';
+import { selectError, selectIsLoading, selectTasks } from '../redux/selectors';
 
 export const App = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(state => state.tasks.isLoading);
-  const error = useSelector(state => state.tasks.error);
-  const items = useSelector(state => state.tasks.items);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+  const items = useSelector(selectTasks);
 
   useEffect(() => {
     dispatch(fetchTasks());
   }, [dispatch]);
   return (
     <>
-      {/* <TaskCounter />
+      <TaskCounter />
       <TaskForm />
-      <StatusFilter /> */}
+      <StatusFilter />
       {isLoading && <p>loading request...</p>}
-      {error && <p>Something went wrong...</p>}
+      {error && <p>{error}</p>}
       {items.length > 0 && <TaskList />}
     </>
   );
