@@ -8,6 +8,7 @@ export const SetStepForm = () => {
   const handleSubmit = evt => {
     evt.preventDefault();
     const form = evt.target;
+    // console.log(form);
     const { value } = form.elements.value;
 
     dispatch(setStep(Number(value)));

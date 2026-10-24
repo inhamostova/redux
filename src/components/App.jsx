@@ -1,11 +1,11 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { StatusFilter } from './StatusFilter/StatusFilter';
-import { TaskCounter } from './TaskCounter/TaskCounter';
-import { TaskForm } from './TaskForm/TaskForm';
-import { TaskList } from './TaskList/TaskList';
-import { useEffect } from 'react';
-import { fetchTasks } from '../redux/operations';
-import { selectError, selectIsLoading, selectTasks } from '../redux/selectors';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { StatusFilter } from './StatusFilter/StatusFilter';
+// import { TaskCounter } from './TaskCounter/TaskCounter';
+// import { TaskForm } from './TaskForm/TaskForm';
+// import { TaskList } from './TaskList/TaskList';
+// import { useEffect } from 'react';
+// import { fetchTasks } from '../redux/operations';
+// import { selectError, selectIsLoading, selectTasks } from '../redux/selectors';
 import { Counter } from './Counter/Counter';
 import { SetStepForm } from './SetStepForm/SetStepForm';
 
