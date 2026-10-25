@@ -8,6 +8,8 @@
 // import { selectError, selectIsLoading, selectTasks } from '../redux/selectors';
 import { Counter } from './Counter/Counter';
 import { SetStepForm } from './SetStepForm/SetStepForm';
+import { TodoForm } from './Todoform/TodoForm';
+import { TodoList } from './TodoList/TodoList';
 
 // export const App = () => {
 //   const dispatch = useDispatch();
@@ -35,6 +37,9 @@ export const App = () => {
     <>
       <SetStepForm />
       <Counter />
+
+      <TodoForm />
+      <TodoList />
     </>
   );
 };

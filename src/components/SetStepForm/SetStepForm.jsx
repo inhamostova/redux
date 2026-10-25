@@ -2,13 +2,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setStep } from 'redux2/actions';
 
 export const SetStepForm = () => {
-  const { step } = useSelector(state => state);
+  const { step } = useSelector(state => state.counter);
   const dispatch = useDispatch();
 
   const handleSubmit = evt => {
     evt.preventDefault();
     const form = evt.target;
-    // console.log(form);
     const { value } = form.elements.value;
 
     dispatch(setStep(Number(value)));
