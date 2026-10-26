@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { addTodo } from 'redux2/actions';
+import { addTodo } from 'redux2/slice';
 
 export const TodoForm = () => {
   const dispatch = useDispatch();

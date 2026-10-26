@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { setStep } from 'redux2/actions';
+import { setStep } from 'redux2/slice';
 
 export const SetStepForm = () => {
   const { step } = useSelector(state => state.counter);
