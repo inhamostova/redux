@@ -12,6 +12,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
+import { newsReducer } from './newsSlice';
 
 const persistConfig = {
   key: 'todos',
@@ -22,6 +23,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   counter: counterReducer,
   todos: todosReducer,
+  news: newsReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
