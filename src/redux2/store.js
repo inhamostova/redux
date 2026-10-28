@@ -12,7 +12,9 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
-import { newsReducer } from './newsSlice';
+// import { newsReducer } from './newsSlice';
+import { newsApi } from './rtkquery';
+import { pokemonApi } from './pokemon';
 
 const persistConfig = {
   key: 'todos',
@@ -23,7 +25,9 @@ const persistConfig = {
 const rootReducer = combineReducers({
   counter: counterReducer,
   todos: todosReducer,
-  news: newsReducer,
+  //   news: newsReducer,
+  [pokemonApi.reducerPath]: pokemonApi.reducer,
+  [newsApi.reducerPath]: newsApi.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -35,7 +39,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).concat(newsApi.middleware, pokemonApi.middleware),
 });
 
 export const persistor = persistStore(store);
